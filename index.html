@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="my">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d1b"><link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css"><title>Online Game Shop</title>
+</head>
+<body>
+<header><b>🎮 Online Game Shop</b><button id="adminBtn">Admin</button></header>
+<main>
+<section class="hero"><p class="small">FAST • SAFE • EASY</p><h1>Game Top-Up Shop</h1><p>Game ရွေးပြီး Package ဝယ်ယူနိုင်ပါတယ်။</p></section>
+<section><h2>🎮 Games</h2><div id="games" class="grid"></div></section>
+<section id="orderBox" class="panel" hidden><h2>🛒 Order တင်ရန်</h2>
+<form id="orderForm"><label>Game</label><input id="game" readonly>
+<label>Package</label><input id="package" readonly><label>Player ID / UID</label>
+<input id="uid" required placeholder="Player ID / UID"><label>Server ID</label>
+<input id="server" placeholder="Server ID (ရှိရင်)"><label>ဆက်သွယ်ရန်</label>
+<input id="contact" required placeholder="Telegram / Facebook / Phone">
+<button type="submit">Order တင်မယ်</button></form><p id="orderMsg"></p></section>
+<section id="adminPanel" class="panel" hidden><div class="row"><h2>⚙️ Admin Dashboard</h2>
+<button id="logoutBtn">Logout</button></div><p>Admin: <strong>zarni19720@gmail.com</strong></p>
+<form id="gameForm"><input id="gname" required placeholder="Game name"><input id="gemoji" value="🎮" placeholder="Emoji">
+<button type="submit">Add Game</button></form><div id="adminGames"></div></section>
+</main><footer>© 2026 Online Game Shop</footer><script src="app.js"></script>
+</body></html>
