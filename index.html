@@ -1,25 +1,85 @@
 <!doctype html>
 <html lang="my">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080d1b"><link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="styles.css"><title>Online Game Shop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>XZ Online Shop</title>
 </head>
 <body>
-<header><b>🎮 Online Game Shop</b><button id="adminBtn">Admin</button></header>
-<main>
-<section class="hero"><p class="small">FAST • SAFE • EASY</p><h1>Game Top-Up Shop</h1><p>Game ရွေးပြီး Package ဝယ်ယူနိုင်ပါတယ်။</p></section>
-<section><h2>🎮 Games</h2><div id="games" class="grid"></div></section>
-<section id="orderBox" class="panel" hidden><h2>🛒 Order တင်ရန်</h2>
-<form id="orderForm"><label>Game</label><input id="game" readonly>
-<label>Package</label><input id="package" readonly><label>Player ID / UID</label>
-<input id="uid" required placeholder="Player ID / UID"><label>Server ID</label>
-<input id="server" placeholder="Server ID (ရှိရင်)"><label>ဆက်သွယ်ရန်</label>
-<input id="contact" required placeholder="Telegram / Facebook / Phone">
-<button type="submit">Order တင်မယ်</button></form><p id="orderMsg"></p></section>
-<section id="adminPanel" class="panel" hidden><div class="row"><h2>⚙️ Admin Dashboard</h2>
-<button id="logoutBtn">Logout</button></div><p>Admin: <strong>zarni19720@gmail.com</strong></p>
-<form id="gameForm"><input id="gname" required placeholder="Game name"><input id="gemoji" value="🎮" placeholder="Emoji">
-<button type="submit">Add Game</button></form><div id="adminGames"></div></section>
-</main><footer>© 2026 Online Game Shop</footer><script src="app.js"></script>
-</body></html>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
+      <div class="brand">
+        <div class="brand-mark">🎮</div>
+        <div><strong>XZ ONLINE</strong><span>GAME SHOP</span></div>
+      </div>
+      <button class="icon-btn cart-btn" id="cartBtn" aria-label="Orders">🛒<b id="cartCount">0</b></button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <span class="eyebrow">FAST • SECURE • 24/7</span>
+          <h1>Game Top‑Up<br><em>အလွယ်တကူ ဝယ်မယ်</em></h1>
+          <p>Game ရွေး → Package ရွေး → Player ID ထည့် → Order တင်ပါ။</p>
+          <button class="primary" id="browseBtn">Game တွေကြည့်မယ် <span>→</span></button>
+        </div>
+        <div class="hero-orb">⚡</div>
+      </section>
+
+      <div class="search-row">
+        <div class="search"><span>⌕</span><input id="search" placeholder="Game ရှာမယ်..."></div>
+      </div>
+
+      <section id="gamesSection">
+        <div class="section-head"><div><span class="eyebrow">TOP UP</span><h2>Games</h2></div><span id="gameCount" class="muted"></span></div>
+        <div id="games" class="game-grid"></div>
+      </section>
+
+      <section id="orderBox" class="sheet" hidden>
+        <div class="sheet-head"><div><span class="eyebrow">CHECKOUT</span><h2>Order တင်မယ်</h2></div><button class="close-btn" id="closeOrder">×</button></div>
+        <div class="selected-card">
+          <div id="selectedEmoji" class="selected-icon">🎮</div>
+          <div><small>ရွေးထားသော Package</small><strong id="selectedGame">-</strong><span id="selectedPackage">-</span></div>
+        </div>
+        <form id="orderForm">
+          <label>Player ID / UID<input id="uid" required placeholder="ဥပမာ 123456789"></label>
+          <label>Server ID <small>(ရှိရင်)</small><input id="server" placeholder="ဥပမာ 1234"></label>
+          <label>ဆက်သွယ်ရန်<input id="contact" required placeholder="Telegram / Facebook / Phone"></label>
+          <button class="primary wide" type="submit">Order တင်မယ် <span>✓</span></button>
+        </form>
+        <div id="orderMsg" class="success" hidden></div>
+      </section>
+
+      <section id="ordersBox" class="sheet" hidden>
+        <div class="sheet-head"><div><span class="eyebrow">MY ORDERS</span><h2>Order History</h2></div><button class="close-btn" id="closeOrders">×</button></div>
+        <div id="ordersList"></div>
+      </section>
+
+      <section id="adminPanel" class="sheet" hidden>
+        <div class="sheet-head"><div><span class="eyebrow">ADMIN</span><h2>Shop Manager</h2></div><button class="close-btn" id="closeAdmin">×</button></div>
+        <div class="admin-note">Demo Admin: <b>zarni19720@gmail.com</b></div>
+        <form id="gameForm" class="admin-form">
+          <input id="gname" required placeholder="Game name">
+          <input id="gemoji" placeholder="Emoji" maxlength="2" value="🎮">
+          <input id="gpackages" required placeholder="Packages comma ခြား (86 Diamonds, 172 Diamonds)">
+          <button class="primary" type="submit">Game ထည့်မယ်</button>
+        </form>
+        <div id="adminGames"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-target="home"><span>⌂</span>Home</button>
+      <button class="nav-item" data-target="orders"><span>🛒</span>Orders</button>
+      <button class="nav-item" id="adminNav"><span>⚙</span>Admin</button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
